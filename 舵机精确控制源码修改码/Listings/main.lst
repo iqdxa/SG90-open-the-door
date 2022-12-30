@@ -1,4 +1,4 @@
-C51 COMPILER V9.59.0.0   MAIN                                                              12/29/2022 15:04:44 PAGE 1   
+C51 COMPILER V9.59.0.0   MAIN                                                              12/30/2022 15:13:36 PAGE 1   
 
 
 C51 COMPILER V9.59.0.0, COMPILATION OF MODULE MAIN
@@ -15,13 +15,13 @@ line level    source
    5          #define uint unsigned int
    6          
    7          sbit pwm = P1^0;
-   8          sbit sw1 = P3^4;
-   9          sbit sw2 = P3^5;
+   8          sbit sw1 = P3^1;
+   9          sbit sw2 = P3^0;
   10          
   11          //TODO:让每个对应的值相等，即angle是多少就是多少度
   12          //5对应0度 10对应45度 15对应90度 20对应135度 25对应180度
-  13          uint angle=15;//调整初始角度为90°
-  14          uint count;
+  13          uint angle=90;//调整初始角度为90°
+  14          uint count=0;
   15          
   16          void delay(uint ms)
   17          {
@@ -44,52 +44,58 @@ line level    source
   34          
   35          void main()
   36          {
-  37   1              count=0;
+  37   1              int i=0;
   38   1              Init();//初始化
   39   1              while(1)
   40   1              {
   41   2                      if(sw1==0)
   42   2                      {
-  43   3                              delay(10);//消抖
-  44   3                              if(sw1==0)//再次确认
+  43   3                              //当angle=180时，只能按sw2，按sw1不起作用
+  44   3                              if(angle<180)
   45   3                              {
-  46   4                                      angle++;
-  47   4                                      count=0;
-  48   4                                      if(angle==25)angle=25;
-  49   4                                      while(sw1==0);//直到松手才跳出循环
-  50   4                              }
-  51   3                      }
-  52   2                      if(sw2==0)
-  53   2                      {
-  54   3                              delay(10);
-C51 COMPILER V9.59.0.0   MAIN                                                              12/29/2022 15:04:44 PAGE 2   
+  46   4                                      for(i=0;i<=180;i++)
+  47   4                                      {
+  48   5                                              angle=i;
+  49   5                                              delay(2);
+  50   5                                      }
+  51   4                              }
+  52   3                              count=0;
+  53   3                              while(sw1==0);//直到松手才跳出循环
+  54   3                      }
+C51 COMPILER V9.59.0.0   MAIN                                                              12/30/2022 15:13:36 PAGE 2   
 
-  55   3                              if(sw2==0)
-  56   3                              {
-  57   4                                      angle--;
-  58   4                                      count=0;
-  59   4                                      if(angle==5)angle=5;
-  60   4                                      while(sw2==0);
-  61   4                              }
-  62   3                      }
-  63   2              }
-  64   1              while(1);
-  65   1      }
-  66          
-  67          void Timer() interrupt 1 //中断程序pwm信号输出
-  68          {
-  69   1              TL0 = 0xA3;
-  70   1              TH0 = 0xFF;
-  71   1      
-  72   1              count++;
-  73   1              if(count == 20)count = 0;
-  74   1              if(count < angle)pwm = 1;
-  75   1              else pwm = 0;
-  76   1      }
+  55   2                      if(sw2==0)
+  56   2                      {
+  57   3                              //当angle=0时，只能按sw1，按sw2不起作用
+  58   3                              if(angle>0)
+  59   3                              {
+  60   4                                      for(i=180;i>=0;i--)
+  61   4                                      {
+  62   5                                              angle=i;
+  63   5                                              delay(2);
+  64   5                                      }
+  65   4                              }
+  66   3                              if(angle<=0)angle=0;
+  67   3                              count=0;
+  68   3                              while(sw2==0);
+  69   3                      }
+  70   2              }
+  71   1      }
+  72          
+  73          void Timer() interrupt 1 //中断程序pwm信号输出
+  74          {
+  75   1              TL0 = 0xA3;
+  76   1              TH0 = 0xFF;
+  77   1      
+  78   1              count++;
+  79   1              if(count == 20)count = 0;
+  80   1              if(count < angle/6)pwm = 1;
+  81   1              else pwm = 0;
+  82   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    194    ----
+   CODE SIZE        =    255    ----
    CONSTANT SIZE    =   ----    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

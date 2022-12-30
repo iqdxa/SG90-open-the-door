@@ -5,13 +5,13 @@
 #define uint unsigned int
 
 sbit pwm = P1^0;
-sbit sw1 = P3^4;
-sbit sw2 = P3^5;
+sbit sw1 = P3^1;
+sbit sw2 = P3^0;
 
 //TODO:让每个对应的值相等，即angle是多少就是多少度
 //5对应0度 10对应45度 15对应90度 20对应135度 25对应180度
-uint angle=15;//调整初始角度为90°
-uint count;
+uint angle=0;//调整初始角度为0°
+uint count=0;
 
 void delay(uint ms)
 {
@@ -34,34 +34,40 @@ void Init()
 
 void main()
 {
-	count=0;
+	int i=0;
 	Init();//初始化
 	while(1)
 	{
 		if(sw1==0)
 		{
-			delay(10);//消抖
-			if(sw1==0)//再次确认
+			//当angle=180时，只能按sw2，按sw1不起作用
+			if(angle<180)
 			{
-				angle++;
-				count=0;
-				if(angle==25)angle=25;
-				while(sw1==0);//直到松手才跳出循环
+				for(i=0;i<=180;i++)
+				{
+					angle=i;
+					delay(2);
+				}
 			}
+			count=0;
+			while(sw1==0);//直到松手才跳出循环
 		}
 		if(sw2==0)
 		{
-			delay(10);
-			if(sw2==0)
+			//当angle=0时，只能按sw1，按sw2不起作用
+			if(angle>0)
 			{
-				angle--;
-				count=0;
-				if(angle==5)angle=5;
-				while(sw2==0);
+				for(i=180;i>=0;i--)
+				{
+					angle=i;
+					delay(2);
+				}
 			}
+			if(angle<=0)angle=0;
+			count=0;
+			while(sw2==0);
 		}
 	}
-	while(1);
 }
 
 void Timer() interrupt 1 //中断程序pwm信号输出
@@ -71,6 +77,6 @@ void Timer() interrupt 1 //中断程序pwm信号输出
 
 	count++;
 	if(count == 20)count = 0;
-	if(count < angle)pwm = 1;
+	if(count < angle/6)pwm = 1;
 	else pwm = 0;
 }
