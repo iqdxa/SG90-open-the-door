@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Open door</string>
+    <string name="serial_port">串口</string>
+    <string name="baud_rate">波特率</string>
+    <string name="open_door">开门</string>
 </resources>
