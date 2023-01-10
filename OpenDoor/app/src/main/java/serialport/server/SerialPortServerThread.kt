@@ -12,7 +12,7 @@ package serialport.server
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothServerSocket
 import android.util.Log
-import world.shanya.serialport.tools.LogUtil
+import serialport.tools.LogUtil
 import java.io.IOException
 import java.util.*
 

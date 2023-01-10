@@ -8,8 +8,8 @@ import android.bluetooth.le.ScanResult
 import android.content.Context
 import android.content.IntentFilter
 import androidx.lifecycle.MutableLiveData
-import world.shanya.serialport.SerialPort
-import world.shanya.serialport.tools.LogUtil
+import serialport.SerialPort
+import serialport.tools.LogUtil
 import java.lang.Exception
 
 //找到设备接口

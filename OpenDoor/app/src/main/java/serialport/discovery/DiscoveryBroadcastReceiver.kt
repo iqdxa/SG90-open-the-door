@@ -6,14 +6,11 @@ import android.bluetooth.BluetoothDevice
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import world.shanya.serialport.SerialPort
-import world.shanya.serialport.tools.LogUtil
+import serialport.SerialPort
+import serialport.tools.LogUtil
 
 /**
  * DiscoveryBroadcastReceiver 蓝牙搜索状态广播接收器
- * @Author Shanya
- * @Date 2021-8-13
- * @Version 4.0.3
  */
 @SuppressLint("MissingPermission")
 class DiscoveryBroadcastReceiver : BroadcastReceiver() {

@@ -22,7 +22,6 @@ import kotlinx.android.synthetic.main.activity_discovery.*
 import kotlinx.android.synthetic.main.device_cell.view.*
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
-//import serialport.R
 import serialport.SerialPort
 import serialport.discovery.SerialPortDiscovery.pairedDevicesListBD
 import serialport.discovery.SerialPortDiscovery.unPairedDevicesListBD
@@ -34,9 +33,6 @@ import kotlin.collections.ArrayList
 
 /**
  * DiscoveryActivity 搜索页面Activity
- * @Author Shanya
- * @Date 2021-5-28
- * @Version 3.1.0
  */
 @SuppressLint("MissingPermission")
 class DiscoveryActivity : AppCompatActivity() {
@@ -183,22 +179,14 @@ class DiscoveryActivity : AppCompatActivity() {
 
     /**
     * 创建右上角菜单
-    * @param menu
-    * @Author Shanya
-    * @Date 2021/5/28
-    * @Version 3.1.0
     */
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.discovery_menu,menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     /**
     * 右上角菜单项监听
-    * @param item
-    * @Author Shanya
-    * @Date 2021/5/28
-    * @Version 3.1.0
     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
