@@ -49,7 +49,7 @@
 
 希望能够通过手机的蓝牙远程控制单片机进行开门。
 
-软件使用GitHub用户myk3y的usb-serial-for-android开源软件，并自己进行修改以适应自己使用。
+软件使用GitHub用户Shanyaliux的SerialPortSample开源项目中的kotlindemo应用，并自己进行修改以适应自己使用。
 
 #### 软件使用
 
