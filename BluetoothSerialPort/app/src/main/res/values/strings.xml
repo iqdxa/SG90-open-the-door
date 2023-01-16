@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">开门</string>
     <string name="title_bar">蓝牙开门</string>
-    <string name="action_settings">Settings</string>
+    <string name="menu_about">关于</string>
     <!-- Strings used for fragments for navigation -->
 
 </resources>

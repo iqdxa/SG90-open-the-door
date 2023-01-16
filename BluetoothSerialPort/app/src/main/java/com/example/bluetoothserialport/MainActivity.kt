@@ -1,8 +1,11 @@
 package com.example.bluetoothserialport
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -12,6 +15,9 @@ import org.w3c.dom.Text
 import world.shanya.serialport.SerialPortBuilder
 
 class MainActivity : AppCompatActivity() {
+
+    private var toolMenu: Menu ?= null
+
     @SuppressLint("MissingPermission", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,5 +64,20 @@ class MainActivity : AppCompatActivity() {
         buttonSend.setOnClickListener {
             serialPort.sendData(editTextSendData.text.toString())
         }
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        toolMenu = menu
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_about ->
+                startActivity(Intent(this, AboutActivity::class.java))
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
