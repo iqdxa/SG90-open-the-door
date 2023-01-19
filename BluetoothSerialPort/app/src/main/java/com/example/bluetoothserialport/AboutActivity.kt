@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
+import com.example.bluetoothserialport.utils.CheckUpdate
 import mehdi.sakout.aboutpage.AboutPage
 import mehdi.sakout.aboutpage.Element
-import world.shanya.serialport.utils.CheckUpdate
 import java.lang.Exception
 
 class AboutActivity : AppCompatActivity() {
