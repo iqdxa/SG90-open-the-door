@@ -8,9 +8,9 @@
         android:title="@string/menu_connect"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/menu_upgrade"
+        android:id="@+id/menu_about"
         android:orderInCategory="1"
-        android:title="更新"
+        android:title="@string/menu_about"
         app:showAsAction="never" />
     <item
         android:id="@+id/menu_quiet"

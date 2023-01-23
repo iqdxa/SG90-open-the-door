@@ -1,24 +1,31 @@
 package com.example.bluetoothserialport
 
 import android.annotation.SuppressLint
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import com.azhon.appupdate.manager.DownloadManager
+import com.azhon.appupdate.view.NumberProgressBar
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
-import org.w3c.dom.Text
 import world.shanya.serialport.SerialPort
 import world.shanya.serialport.SerialPortBuilder
+import java.util.Currency.getInstance
+
 
 class MainActivity : AppCompatActivity() {
 
     private var toolMenu: Menu ?= null
     private var SerialPort: SerialPort?= null
+    private val progressBar: NumberProgressBar? = null
+    private var manager: DownloadManager? = null
+    private val url =
+        "https://imtt.dd.qq.com/16891/apk/FA48766BA12A41A1D619CB4B152889C6.apk?fsname=com.estrongs.android.pop_4.2.3.3_10089.apk&csr=1bbd"
+
 
     @SuppressLint("MissingPermission", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,18 +92,18 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            //R.id.menu_upgrade ->
-
-                //startActivity(Intent(this, AboutActivity::class.java))
+            //R.id.menu_about ->
+                //checkUpdate()
             R.id.menu_quiet ->
                 finish()
-            R.id.menu_connect -> {
+            /*R.id.menu_connect -> {
                 if (item.title == "连接") {
                     SerialPort?.openDiscoveryActivity()
                 } else {
                     SerialPort?.disconnect()
                 }
             }
+             */
         }
         return super.onOptionsItemSelected(item)
     }
