@@ -86,6 +86,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             //R.id.menu_upgrade ->
+
                 //startActivity(Intent(this, AboutActivity::class.java))
             R.id.menu_quiet ->
                 finish()
