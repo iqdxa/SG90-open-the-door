@@ -69,7 +69,9 @@
 
 在别人的基础上进行安卓应用开发，确实方便了很多，可以直接使用不用接触蓝牙相关的代码，而且从中还学到了很多相关的知识。自己同时也在微信读书上看《第一行代码（第三版）》的内容，对安卓开发也有了一些了解，但是很多东西都记不住。
 
+## **感谢以下开源项目**
 
+- [SerialPortSample](https://github.com/Shanyaliux/SerialPortSample)
 
-
+- [AppUpdate](https://github.com/azhon/AppUpdate)
 
