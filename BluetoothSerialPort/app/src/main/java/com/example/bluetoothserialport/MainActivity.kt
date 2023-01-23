@@ -12,11 +12,13 @@ import android.widget.TextView
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import org.w3c.dom.Text
+import world.shanya.serialport.SerialPort
 import world.shanya.serialport.SerialPortBuilder
 
 class MainActivity : AppCompatActivity() {
 
     private var toolMenu: Menu ?= null
+    private var SerialPort: SerialPort?= null
 
     @SuppressLint("MissingPermission", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         val buttonSend = findViewById<Button>(R.id.buttonSend)
 
         val buttonOpenDoor = findViewById<Button>(R.id.buttonOpenDoor)
+
 
         val serialPort = SerialPortBuilder
             .setReceivedDataCallback {
@@ -49,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                                     "设备类型:\t${bluetoothDevice?.type}"
 
                     }else {
-                        textViewConnectInfo.text = ""
+                        textViewConnectInfo.text = "还未连接设备，请点击连接"
                     }
                 }
             }
@@ -59,6 +62,7 @@ class MainActivity : AppCompatActivity() {
             serialPort.openDiscoveryActivity()
         }
 
+        //开门按钮
         buttonOpenDoor.setOnClickListener {
             serialPort.sendData("1")
         }
@@ -81,8 +85,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu_about ->
-                startActivity(Intent(this, AboutActivity::class.java))
+            //R.id.menu_upgrade ->
+                //startActivity(Intent(this, AboutActivity::class.java))
+            R.id.menu_quiet ->
+                finish()
+            R.id.menu_connect -> {
+                if (item.title == "连接") {
+                    SerialPort?.openDiscoveryActivity()
+                } else {
+                    SerialPort?.disconnect()
+                }
+            }
         }
         return super.onOptionsItemSelected(item)
     }
