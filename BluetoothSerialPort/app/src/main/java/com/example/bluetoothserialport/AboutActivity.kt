@@ -4,14 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
-import com.example.bluetoothserialport.utils.CheckUpdate
+//import com.example.bluetoothserialport.utils.CheckUpdate
 import mehdi.sakout.aboutpage.AboutPage
 import mehdi.sakout.aboutpage.Element
 import java.lang.Exception
 
 class AboutActivity : AppCompatActivity() {
-
-    private val checkUpdate = CheckUpdate(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,9 +18,6 @@ class AboutActivity : AppCompatActivity() {
         val versionElement = Element()
         versionElement.gravity = Gravity.CENTER
         versionElement.title = "版本号: " + packageManager.getPackageInfo(packageName, 0).versionName
-        versionElement.setOnClickListener {
-                checkUpdate.check(true)
-        }
 
         val authorElement = Element()
         authorElement.gravity = Gravity.CENTER

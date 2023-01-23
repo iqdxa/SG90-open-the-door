@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
         val editTextSendData = findViewById<EditText>(R.id.editTextTextSend)
         val buttonSend = findViewById<Button>(R.id.buttonSend)
 
+        val buttonOpenDoor = findViewById<Button>(R.id.buttonOpenDoor)
+
         val serialPort = SerialPortBuilder
             .setReceivedDataCallback {
                 MainScope().launch {
@@ -55,6 +57,10 @@ class MainActivity : AppCompatActivity() {
 
         buttonConnect.setOnClickListener {
             serialPort.openDiscoveryActivity()
+        }
+
+        buttonOpenDoor.setOnClickListener {
+            serialPort.sendData("1")
         }
 
         buttonDisconnect.setOnClickListener {
