@@ -21,6 +21,7 @@ import java.util.Currency.getInstance
 class MainActivity : AppCompatActivity() {
 
     private var toolMenu: Menu ?= null
+    private var serialPort:SerialPort ?= null
 
     @SuppressLint("MissingPermission", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         val buttonOpenDoor = findViewById<Button>(R.id.buttonOpenDoor)
 
 
-        val serialPort = SerialPortBuilder
+        serialPort = SerialPortBuilder
             .setReceivedDataCallback {
                 MainScope().launch {
                     stringBuilder.append(it)
@@ -61,20 +62,20 @@ class MainActivity : AppCompatActivity() {
             .build(this)
 
         buttonConnect.setOnClickListener {
-            serialPort.openDiscoveryActivity()
+            serialPort!!.openDiscoveryActivity()
         }
 
         //开门按钮
         buttonOpenDoor.setOnClickListener {
-            serialPort.sendData("1")
+            serialPort!!.sendData("1")
         }
 
         buttonDisconnect.setOnClickListener {
-            serialPort.disconnect()
+            serialPort!!.disconnect()
         }
 
         buttonSend.setOnClickListener {
-            serialPort.sendData(editTextSendData.text.toString())
+            serialPort!!.sendData(editTextSendData.text.toString())
         }
 
     }
@@ -89,16 +90,18 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.menu_about ->
                 startActivity(Intent(this,AboutActivity::class.java))
-            R.id.menu_quiet ->
+            R.id.menu_quiet -> {
+                serialPort?.disconnect()
                 finish()
-            /*R.id.menu_connect -> {
+            }
+            R.id.menu_connect -> {
                 if (item.title == "连接") {
-                    SerialPort?.openDiscoveryActivity()
+                    serialPort?.openDiscoveryActivity()
                 } else {
-                    SerialPort?.disconnect()
+                    serialPort?.disconnect()
                 }
             }
-             */
+
         }
         return super.onOptionsItemSelected(item)
     }
