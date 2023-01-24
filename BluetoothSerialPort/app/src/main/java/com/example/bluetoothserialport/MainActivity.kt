@@ -114,7 +114,7 @@ class MainActivity : AppCompatActivity() {
         return false
     }
 
-    fun exitBy2Click() {
+    private fun exitBy2Click() {
         val handler = Handler()
         if ((!isExit)) {
             isExit = true
