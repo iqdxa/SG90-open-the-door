@@ -1,11 +1,9 @@
 package com.example.bluetoothserialport
 
-import android.R
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.os.Message
 import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
@@ -108,5 +106,24 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    private var isExit: Boolean = false
 
+    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK)
+            exitBy2Click() //调用双击退出函数
+        return false
+    }
+
+    fun exitBy2Click() {
+        val handler = Handler()
+        if ((!isExit)) {
+            isExit = true
+            Toast.makeText(this, "再按一次退出APP", Toast.LENGTH_LONG).show()
+            handler.postDelayed({ isExit = false }, 1000 * 2) //x秒后没按就取消
+        } else {
+            serialPort?.disconnect()
+            finish()
+            //System.exit(0)
+        }
+    }
 }
