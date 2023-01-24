@@ -1,21 +1,23 @@
 package com.example.bluetoothserialport
 
+import android.R
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Message
+import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.azhon.appupdate.manager.DownloadManager
-import com.azhon.appupdate.view.NumberProgressBar
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import world.shanya.serialport.SerialPort
 import world.shanya.serialport.SerialPortBuilder
-import java.util.Currency.getInstance
 
 
 class MainActivity : AppCompatActivity() {
@@ -105,4 +107,6 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+
 }
