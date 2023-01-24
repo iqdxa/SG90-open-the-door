@@ -5,10 +5,15 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import androidx.appcompat.app.AlertDialog
+import com.azhon.appupdate.manager.DownloadManager
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 import mehdi.sakout.aboutpage.AboutPage
 import mehdi.sakout.aboutpage.Element
 //import world.shanya.serialportsample.utils.CheckUpdate
 import java.lang.Exception
+
+private const val jsonUrl = "https://gitee.com/Shanya/serialportappupdate/raw/master/update.json"
 
 class AboutActivity : AppCompatActivity() {
 

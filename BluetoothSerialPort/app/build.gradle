@@ -58,4 +58,5 @@ dependencies {
     //implementation 'com.github.azhon:AppUpdate:3.0.7'  //Check Update
     //implementation 'com.azhon:appupdate:2.6.0'
     implementation 'io.github.azhon:appupdate:4.2.6'
+    implementation 'cn.zhxu:okhttps:4.0.1'
 }
