@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">开门</string>
     <string name="title_bar">蓝牙开门</string>
-    <string name="menu_about">关于</string>
-    <string name="menu_quiet">退出</string>
+    <string name="menu_about">关   于</string>
+    <string name="menu_quiet">退   出</string>
     <string name="menu_connect">连接</string>
     <string name="connect">连接</string>
     <string name="open_door">开门</string>

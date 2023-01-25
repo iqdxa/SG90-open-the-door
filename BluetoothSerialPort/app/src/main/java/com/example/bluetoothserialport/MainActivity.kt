@@ -80,12 +80,14 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    //该方法用于创建显示Menu
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         toolMenu = menu
         return super.onCreateOptionsMenu(menu)
     }
 
+    //该方法对菜单的item进行监听
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_about ->
