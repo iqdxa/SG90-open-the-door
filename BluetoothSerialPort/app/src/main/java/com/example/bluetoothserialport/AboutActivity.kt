@@ -1,17 +1,16 @@
 package com.example.bluetoothserialport
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import androidx.appcompat.app.AlertDialog
-import com.azhon.appupdate.manager.DownloadManager
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
+import com.example.bluetoothserialport.pages.GithubWebsiteActivity
+import com.example.bluetoothserialport.pages.MainWebsiteActivity
 import mehdi.sakout.aboutpage.AboutPage
 import mehdi.sakout.aboutpage.Element
 //import world.shanya.serialportsample.utils.CheckUpdate
-import java.lang.Exception
 
 private const val jsonUrl = "https://gitee.com/Shanya/serialportappupdate/raw/master/update.json"
 
@@ -46,6 +45,20 @@ class AboutActivity : AppCompatActivity() {
             }
         }
 
+        val mainWebsiteElement = Element()
+        mainWebsiteElement.gravity = Gravity.START
+        mainWebsiteElement.title = "访问主页"
+        mainWebsiteElement.setOnClickListener {
+            startActivity(Intent(this, MainWebsiteActivity::class.java))
+        }
+
+        val githubElement = Element()
+        githubElement.gravity = Gravity.START
+        githubElement.title = "访问GitHub"
+        githubElement.setOnClickListener {
+            startActivity(Intent(this, GithubWebsiteActivity::class.java))
+        }
+
         val aboutPage: View = AboutPage(this)
             .isRTL(false)
             .setDescription("蓝牙开门手机端")
@@ -62,6 +75,8 @@ class AboutActivity : AppCompatActivity() {
 //            .addPlayStore("com.ideashower.readitlater.pro")
             .addGitHub("iqdxa\\SG90-open-the-door")
 //            .addInstagram("medyo80")
+            .addItem(mainWebsiteElement)
+            .addItem(githubElement)
             .addItem(authorElement)
             .addItem(versionElement)
             .addItem(upgradeElement)
