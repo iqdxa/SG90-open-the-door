@@ -17,7 +17,6 @@ import kotlinx.coroutines.launch
 import world.shanya.serialport.SerialPort
 import world.shanya.serialport.SerialPortBuilder
 
-
 class MainActivity : AppCompatActivity() {
 
     private var toolMenu: Menu ?= null
@@ -29,23 +28,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val stringBuilder = StringBuilder()
-        val textViewReceived = findViewById<TextView>(R.id.textViewReceiced)
         val textViewConnectInfo = findViewById<TextView>(R.id.textViewConnectInfo)
         val buttonConnect = findViewById<Button>(R.id.buttonConnect)
         val buttonDisconnect = findViewById<Button>(R.id.buttonDisconnect)
-        val editTextSendData = findViewById<EditText>(R.id.editTextTextSend)
-        val buttonSend = findViewById<Button>(R.id.buttonSend)
 
         val buttonOpenDoor = findViewById<Button>(R.id.buttonOpenDoor)
-
+        val buttonCloseDoor = findViewById<Button>(R.id.buttonCloseDoor)
 
         serialPort = SerialPortBuilder
-            .setReceivedDataCallback {
-                MainScope().launch {
-                    stringBuilder.append(it)
-                    textViewReceived.text = stringBuilder.toString()
-                }
-            }
             .setConnectionStatusCallback { status, bluetoothDevice ->
                 MainScope().launch {
                     if (status) {
@@ -70,14 +60,14 @@ class MainActivity : AppCompatActivity() {
             serialPort!!.sendData("1")
         }
 
+        //关门按钮
+        buttonCloseDoor.setOnClickListener {
+            serialPort!!.sendData("0")
+        }
+
         buttonDisconnect.setOnClickListener {
             serialPort!!.disconnect()
         }
-
-        buttonSend.setOnClickListener {
-            serialPort!!.sendData(editTextSendData.text.toString())
-        }
-
     }
 
     //该方法用于创建显示Menu
