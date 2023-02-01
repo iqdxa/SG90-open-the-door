@@ -115,7 +115,6 @@ class MainActivity : AppCompatActivity() {
         } else {
             serialPort?.disconnect()
             finish()
-            //System.exit(0)
         }
     }
 }
