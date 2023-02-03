@@ -8,7 +8,6 @@ import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -81,7 +80,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menu_about ->
-                startActivity(Intent(this,AboutActivity::class.java))
+                startActivity(Intent(this, AboutActivity::class.java))
             R.id.menu_quiet -> {
                 serialPort?.disconnect()
                 finish()

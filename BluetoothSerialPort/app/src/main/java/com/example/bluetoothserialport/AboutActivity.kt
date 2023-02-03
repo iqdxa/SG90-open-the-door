@@ -1,22 +1,20 @@
 package com.example.bluetoothserialport
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import com.example.bluetoothserialport.Update.CheckUpdate
 import com.example.bluetoothserialport.pages.GithubWebsiteActivity
 import com.example.bluetoothserialport.pages.MainWebsiteActivity
 import mehdi.sakout.aboutpage.AboutPage
 import mehdi.sakout.aboutpage.Element
-//import world.shanya.serialportsample.utils.CheckUpdate
-
-private const val jsonUrl = "https://gitee.com/Shanya/serialportappupdate/raw/master/update.json"
 
 class AboutActivity : AppCompatActivity() {
 
-    //private val checkUpdate = CheckUpdate(this)
+    private val checkUpdate = CheckUpdate()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,12 +32,18 @@ class AboutActivity : AppCompatActivity() {
         upgradeElement.gravity = Gravity.CENTER
         upgradeElement.title = "检测更新"
         upgradeElement.setOnClickListener {
-            //checkUpdate.check(true)
+
+            checkUpdate.check(this)
+
             AlertDialog.Builder(this).apply{
                 setTitle("检测更新")
                 setMessage("暂无更新")
                 setCancelable(false)
                 setPositiveButton("确定") { dialog, which ->
+
+                }
+                setNegativeButton("暂不"){dialog,which ->
+
                 }
             show()
             }
