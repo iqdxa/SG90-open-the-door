@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     private var apkName:String = "null.apk"
     private var apkSize:String = "0"
     private var updateDescription:String = "null"
-    private var getDataWebsite:String ="https://gitee.com/tfc123/SG90-open-the-door/raw/master/BluetoothSerialPort/app/release/latestVersion.json"
+    private var getDataWebsite:String ="https://gitee.com/tfc123/SG90-open-the-door/raw/master/BluetoothSerialPort/latestVersion.json"
     private val downloadWebsite:String ="https://gitee.com/tfc123/SG90-open-the-door/raw/master/BluetoothSerialPort/app/release/app-release.apk"
 
     @SuppressLint("MissingPermission", "SetTextI18n")
