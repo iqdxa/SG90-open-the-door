@@ -1,7 +1,0 @@
-[{
-    "apkName":"蓝牙开门",
-    "apkSize":"5.45MB",
-    "versionCode":"2",
-    "versionName":"v1.3.2",
-    "apkDescription":"1.使用kotlin进行Android开发。\\n2.通过软件轻松连接蓝牙，然后点击按钮就可以控制舵机开门含有关于页面，对软件的一些基本信息进行展示。\\n3.双击返回键退出程序，并断开蓝牙连接"
-}]
