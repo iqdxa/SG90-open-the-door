@@ -1,18 +1,58 @@
 # 舵机开门
 
+<p align="center">
+	<img src="https://img.shields.io/badge/language-kotlin-orange.svg"/>
+	<img src="https://img.shields.io/github/repo-size/iqdxa/SG90-open-the-door">
+	<img src="https://img.shields.io/github/v/release/iqdxa/SG90-open-the-door">
+	<img src="https://img.shields.io/github/downloads/iqdxa/SG90-open-the-door/total">
+<br>
+    <a herf="https://iqdxa.github.io/SG90-open-the-door/">主页</a>|
+    <a href="https://github.com/iqdxa/SG90-open-the-door/releases">更新日志</a>
+</p>
 ## 想法来源
 
 有一天在哔哩哔哩上面看到了有人用Arduino和舵机控制开门，就感觉很新奇，就想着自己也来试一试看看能不能成。
 
 ## 项目介绍
+
 ### 项目进度
 
-项目进度点击这里：[project_progress](project_progress.md)
+#### 硬件
 
+##### 计划
 
-### 硬件
+- 添加遥控器控制功能
+- 增加蜂鸣器以提示状态
 
-#### 硬件介绍
+#### 软件
+
+##### 计划
+
+###### 未开始
+
+- 在“关于”界面添加“主页”以介绍软件（github.io）
+- 增加上下文菜单：复制
+- 主activity添加关门按钮
+- “关于”页面添加copyright
+- 解决项目中的警告
+
+###### 进行中
+
+- 在“关于”页面添加“反馈”
+- 启动页面时自动重连蓝牙
+
+###### 已结束
+
+- 使用webview浏览网页
+- 简化主页面
+- 删除菜单栏图标
+- 增加检测更新功能
+- 修复软件更新的相关问题
+- 优化软件更新过程
+- 整理代码
+- 更新说明文档
+
+### 硬件介绍
 
 希望能够使用手机远程舵机控制开门，并有语音提示，如果可以使用红外遥控器也行。因为有电源，所以无需考虑耗电问题。
 
@@ -50,13 +90,11 @@
 - ~~热敏电阻~~
 - ~~光敏电阻~~
 
-### 软件
-
-#### 软件介绍
+### 软件介绍
 
 希望能够通过手机的蓝牙远程控制单片机进行开门。
 
-软件使用GitHub用户Shanyaliux的SerialPortSample开源项目中的kotlindemo应用，并自己进行修改以适应自己使用。[下载地址]([Releases · iqdxa/SG90-open-the-door (github.com)](https://github.com/iqdxa/SG90-open-the-door/releases))
+软件使用GitHub用户Shanyaliux的SerialPortSample开源项目中的kotlindemo应用，并自己进行修改以适应自己使用。[软件下载地址]([Releases · iqdxa/SG90-open-the-door (github.com)](https://github.com/iqdxa/SG90-open-the-door/releases))
 
 #### 软件使用
 
