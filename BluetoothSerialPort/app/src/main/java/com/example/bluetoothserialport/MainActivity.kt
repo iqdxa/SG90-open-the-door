@@ -33,17 +33,17 @@ class MainActivity : AppCompatActivity() {
     private var apkName:String = "null.apk"
     private var apkSize:String = "0"
     private var updateDescription:String = "null"
+    private var getDataWebsite:String ="https://gitee.com/tfc123/SG90-open-the-door/raw/master/BluetoothSerialPort/app/release/latestVersion.json"
+    private val downloadWebsite:String ="https://gitee.com/tfc123/SG90-open-the-door/raw/master/BluetoothSerialPort/app/release/app-release.apk"
 
     @SuppressLint("MissingPermission", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val stringBuilder = StringBuilder()
         val textViewConnectInfo = findViewById<TextView>(R.id.textViewConnectInfo)
         val buttonConnect = findViewById<Button>(R.id.buttonConnect)
         val buttonDisconnect = findViewById<Button>(R.id.buttonDisconnect)
-
         val buttonOpenDoor = findViewById<Button>(R.id.buttonOpenDoor)
         val buttonCloseDoor = findViewById<Button>(R.id.buttonCloseDoor)
 
@@ -80,6 +80,7 @@ class MainActivity : AppCompatActivity() {
             serialPort!!.sendData("0")
         }
 
+        //断开按钮
         buttonDisconnect.setOnClickListener {
             serialPort!!.disconnect()
         }
@@ -108,7 +109,6 @@ class MainActivity : AppCompatActivity() {
                     serialPort?.disconnect()
                 }
             }
-
         }
         return super.onOptionsItemSelected(item)
     }
@@ -119,7 +119,7 @@ class MainActivity : AppCompatActivity() {
             try {
                 val client = OkHttpClient()
                 val request = Request.Builder()
-                    .url("https://gitee.com/tfc123/SG90-open-the-door/raw/master/BluetoothSerialPort/app/release/latestVersion.json")
+                    .url(getDataWebsite)
                     .build()
                 val response = client.newCall(request).execute()
                 val responseData = response.body()?.string()
@@ -136,21 +136,21 @@ class MainActivity : AppCompatActivity() {
                         versionCode=3
 //                            if (versionCode > ApkUtil.getVersionCode(application)) {
                         manager = DownloadManager.Builder(this).run {
-                            apkUrl("https://gitee.com/tfc123/SG90-open-the-door/raw/master/BluetoothSerialPort/app/release/app-release.apk")
-                            apkName("open_door.apk")
+                            apkUrl(downloadWebsite)
+                            apkName("app-release.apk")
                             smallIcon(R.mipmap.ic_launcher)
                             showNewerToast(true)
                             apkVersionCode(versionCode)
                             apkVersionName(versionName)
                             apkSize(apkSize)
                             apkDescription(updateDescription)
-//            apkMD5("DC501F04BBAA458C9DC33008EFED5E7F")
+//                      apkMD5("DC501F04BBAA458C9DC33008EFED5E7F")
                             enableLog(true)
-//            httpManager()
+//                      httpManager()
                             jumpInstallPage(true)
-//            dialogImage(R.drawable.ic_dialog)
-//            dialogButtonColor(Color.parseColor("#E743DA"))
-//            dialogProgressBarColor(Color.parseColor("#E743DA"))
+//                      dialogImage(R.drawable.ic_dialog)
+//                      dialogButtonColor(Color.parseColor("#E743DA"))
+//                      dialogProgressBarColor(Color.parseColor("#E743DA"))
                             dialogButtonTextColor(Color.WHITE)
                             showNotification(true)
                             showBgdToast(false)
@@ -159,10 +159,6 @@ class MainActivity : AppCompatActivity() {
                         }
                         manager?.download()
                     }
-//                            } else {
-//                                Toast.makeText(this, "已经是最新版本", Toast.LENGTH_SHORT).show()
-//                            }
-//                        }
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -189,6 +185,4 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
     }
-
-
 }
