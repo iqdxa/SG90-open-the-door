@@ -76,6 +76,7 @@ class AboutActivity : AppCompatActivity() {
             .addGitHub("iqdxa\\SG90-open-the-door")
             .addGroup("反馈：")
             .addItem(feedbackGithubElement)
+            .addItem(feedbackEmailElement)
             .addItem(authorElement)
             .addItem(versionElement)
             .addItem(updateElement)
