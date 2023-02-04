@@ -1,20 +1,31 @@
 package com.example.bluetoothserialport
 
+import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Message
+import android.util.Log
 import android.view.Gravity
 import android.view.View
-import androidx.appcompat.app.AlertDialog
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.bluetoothserialport.Update.CheckUpdate
+import com.azhon.appupdate.manager.DownloadManager
+import com.azhon.appupdate.util.ApkUtil
+import com.azhon.appupdate.util.LogUtil
+import com.azhon.appupdate.view.UpdateDialogActivity
 import com.example.bluetoothserialport.pages.GithubWebsiteActivity
 import com.example.bluetoothserialport.pages.MainWebsiteActivity
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import mehdi.sakout.aboutpage.AboutPage
 import mehdi.sakout.aboutpage.Element
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import kotlin.concurrent.thread
 
 class AboutActivity : AppCompatActivity() {
-
-    private val checkUpdate = CheckUpdate()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,27 +38,6 @@ class AboutActivity : AppCompatActivity() {
         val versionElement = Element()
         versionElement.gravity = Gravity.CENTER
         versionElement.title = "版本号: " + packageManager.getPackageInfo(packageName, 0).versionName
-
-        val upgradeElement = Element()
-        upgradeElement.gravity = Gravity.CENTER
-        upgradeElement.title = "检测更新"
-        upgradeElement.setOnClickListener {
-
-            checkUpdate.check(this)
-
-            AlertDialog.Builder(this).apply{
-                setTitle("检测更新")
-                setMessage("暂无更新")
-                setCancelable(false)
-                setPositiveButton("确定") { dialog, which ->
-
-                }
-                setNegativeButton("暂不"){dialog,which ->
-
-                }
-            show()
-            }
-        }
 
         val mainWebsiteElement = Element()
         mainWebsiteElement.gravity = Gravity.START
@@ -71,20 +61,24 @@ class AboutActivity : AppCompatActivity() {
 //            .addItem(Element().setTitle(packageManager.getPackageInfo(packageName, 0).versionName))
 //            .addItem(adsElement)
             .addGroup("Connect with us")
-//            .addEmail("shanyaliux@qq.com")
+            .addEmail("1429316040@qq.com")
 //            .addWebsite("https://shanyaliux.cn/serialport/")
-//            .addFacebook("the.medy")
-//            .addTwitter("medyo80")
-//            .addYoutube("UCdPQtdWIsg7_pi4mrRu46vA")
-//            .addPlayStore("com.ideashower.readitlater.pro")
             .addGitHub("iqdxa\\SG90-open-the-door")
-//            .addInstagram("medyo80")
             .addItem(mainWebsiteElement)
             .addItem(githubElement)
             .addItem(authorElement)
             .addItem(versionElement)
-            .addItem(upgradeElement)
             .create()
         setContentView(aboutPage)
+    }
+
+    private fun checkUpdate() {
+
+    }
+
+    private fun parseJSONWithGSON(jsonData: String) {
+//        val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
+//        val localVersionCode=packageInfo.longVersionCode
+
     }
 }
