@@ -85,4 +85,24 @@ class AboutActivity : AppCompatActivity() {
             .create()
         setContentView(aboutPage)
     }
+
+    //该方法用于创建显示Menu
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_about, menu)
+        toolMenu = menu
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    //该方法对菜单的item进行监听
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_main ->
+                startActivity(Intent(this, MainActivity::class.java))
+            R.id.menu_quiet -> {
+                serialPort?.disconnect()
+                finish()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }

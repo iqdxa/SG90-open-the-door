@@ -6,45 +6,37 @@
 	<img src="https://img.shields.io/github/v/release/iqdxa/SG90-open-the-door">
 	<img src="https://img.shields.io/github/downloads/iqdxa/SG90-open-the-door/total">
 <br>
-    <a herf="https://iqdxa.github.io/SG90-open-the-door/">主页</a>|
+    <a href="https://iqdxa.github.io/SG90-open-the-door">主页</a>|
     <a href="https://github.com/iqdxa/SG90-open-the-door/releases">更新日志</a>
 </p>
+
+
+
 ## 想法来源
 
 有一天在哔哩哔哩上面看到了有人用Arduino和舵机控制开门，就感觉很新奇，就想着自己也来试一试看看能不能成。
 
 ## 项目介绍
 
-### 项目进度
+### TODO
 
 #### 硬件
 
-##### 计划
-
-- 添加遥控器控制功能
-- 增加蜂鸣器以提示状态
+- [ ] 添加遥控器控制功能
+- [ ] 增加蜂鸣器以提示状态
 
 #### 软件
 
-##### 计划
+- [x] 在“关于”界面添加“主页”以介绍软件（github.io）
+- [x] 关于页面添加菜单
+- [ ] 增加上下文菜单：复制
+- [ ] 主activity添加关门按钮
+- [ ] “关于”页面添加copyright
+- [ ] 解决项目中的警告
+- [ ] 点击按钮检测更新
+- [ ] 关于页面增加更新日志按钮
 
-###### 未开始
-
-- 在“关于”界面添加“主页”以介绍软件（github.io）
-- 增加上下文菜单：复制
-- 主activity添加关门按钮
-- “关于”页面添加copyright
-- 解决项目中的警告
-- 点击按钮检测更新
-- 关于页面增加更新日志按钮
-
-###### 进行中
-
-- 启动页面时自动重连蓝牙
-
-###### 已结束
-
-- 暂无
+- [ ] 启动页面时自动重连蓝牙
 
 ### 硬件介绍
 
@@ -119,6 +111,8 @@
 - [SerialPortSample](https://github.com/Shanyaliux/SerialPortSample)
 
 - [AppUpdate](https://github.com/azhon/AppUpdate)
+
+- [android-about-page](https://github.com/medyo/android-about-page)
 
 ### 网站
 

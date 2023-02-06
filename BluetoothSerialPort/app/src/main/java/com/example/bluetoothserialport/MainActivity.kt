@@ -102,13 +102,6 @@ class MainActivity : AppCompatActivity() {
                 serialPort?.disconnect()
                 finish()
             }
-            R.id.menu_connect -> {
-                if (item.title == "连接") {
-                    serialPort?.openDiscoveryActivity()
-                } else {
-                    serialPort?.disconnect()
-                }
-            }
         }
         return super.onOptionsItemSelected(item)
     }
