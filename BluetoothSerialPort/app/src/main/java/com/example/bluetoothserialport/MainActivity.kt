@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
     private var updateDescription:String = "null"
     private var getDataWebsite:String ="https://gitee.com/tfc123/SG90-open-the-door/raw/master/BluetoothSerialPort/latestVersion.json"
     private val downloadWebsite:String ="https://gitee.com/tfc123/SG90-open-the-door/raw/master/BluetoothSerialPort/app/release/app-release.apk"
-
     @SuppressLint("MissingPermission", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +50,7 @@ class MainActivity : AppCompatActivity() {
         checkUpdate()
 
         serialPort = SerialPortBuilder
+            .autoConnect(true)//设置为启动时重连
             .setConnectionStatusCallback { status, bluetoothDevice ->
                 MainScope().launch {
                     if (status) {
