@@ -17,8 +17,6 @@ import world.shanya.serialport.SerialPortBuilder
 
 class AboutActivity : AppCompatActivity() {
 
-    private var toolMenu: Menu ?= null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
@@ -49,7 +47,6 @@ class AboutActivity : AppCompatActivity() {
             val clipData = ClipData.newPlainText("Label", "1429316040@qq.com")
             clipboardManager.setPrimaryClip(clipData)
             Toast.makeText(this,"已复制邮箱地址到剪贴板",Toast.LENGTH_SHORT).show()
-
         }
 
         val authorElement = Element()
@@ -94,25 +91,5 @@ class AboutActivity : AppCompatActivity() {
             .addItem(updateElement)
             .create()
         setContentView(aboutPage)
-    }
-
-    //该方法用于创建显示Menu
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_about, menu)
-        toolMenu = menu
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    //该方法对菜单的item进行监听
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.menu_main ->
-                startActivity(Intent(this, MainActivity::class.java))
-            R.id.menu_quiet -> {
-//                serialPort?.disconnect()
-                finish()
-            }
-        }
-        return super.onOptionsItemSelected(item)
     }
 }
