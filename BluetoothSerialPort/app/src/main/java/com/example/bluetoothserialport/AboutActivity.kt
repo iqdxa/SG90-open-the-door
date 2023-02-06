@@ -41,17 +41,15 @@ class AboutActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //TODO 添加通过gitee反馈
-        //TODO 修复点击后不能复制的问题
         val feedbackEmailElement = Element()
         feedbackEmailElement.gravity = Gravity.START
         feedbackEmailElement.title = "通过邮箱反馈"
         feedbackEmailElement.setOnClickListener {
-            //获取剪切板管理器
-            val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager            //设置内容到剪切板
-            // Creates a new text clip to put on the clipboard
-            val clip: ClipData = ClipData.newPlainText("Email","1429316040@qq.com")
-            Toast.makeText(this,"邮箱已经复制到剪切板",Toast.LENGTH_SHORT).show()
+            val clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val clipData = ClipData.newPlainText("Label", "1429316040@qq.com")
+            clipboardManager.setPrimaryClip(clipData)
+            Toast.makeText(this,"已复制邮箱地址到剪贴板",Toast.LENGTH_SHORT).show()
+
         }
 
         val authorElement = Element()
