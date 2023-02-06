@@ -21,12 +21,12 @@ class AboutActivity : AppCompatActivity() {
         authorElement.gravity = Gravity.CENTER
         authorElement.title = "作者: TFC"
         authorElement.setOnClickListener {
-            Toast.makeText(this,"别点啦！是TFC制作的",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"别点啦！都点痛了",Toast.LENGTH_SHORT).show()
         }
         val versionElement = Element()
         val versionName = packageManager.getPackageInfo(packageName,0).versionName
         versionElement.gravity = Gravity.CENTER
-        versionElement.title = "版本号: $versionName"
+        versionElement.title = "$versionName"
         versionElement.setOnClickListener {
             Toast.makeText(this,"软件版本号：$versionName",Toast.LENGTH_SHORT).show()
         }
@@ -52,6 +52,8 @@ class AboutActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        //TODO 添加通过gitee反馈
+        //TODO 修复点击后不能复制的问题
         val feedbackEmailElement = Element()
         feedbackEmailElement.gravity = Gravity.START
         feedbackEmailElement.title = "通过邮箱反馈"
@@ -71,8 +73,8 @@ class AboutActivity : AppCompatActivity() {
 //            .addItem(Element().setTitle(packageManager.getPackageInfo(packageName, 0).versionName))
 //            .addItem(adsElement)
             .addGroup("Connect with us")
-            .addEmail("1429316040@qq.com")
-            .addWebsite("https://iqdxa.github.io/")
+//            .addEmail("1429316040@qq.com")
+            .addWebsite("https://iqdxa.github.io/SG90-open-the-door/")
             .addGitHub("iqdxa\\SG90-open-the-door")
             .addGroup("反馈：")
             .addItem(feedbackGithubElement)
