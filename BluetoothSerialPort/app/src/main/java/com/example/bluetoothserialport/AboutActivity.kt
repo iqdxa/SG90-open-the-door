@@ -1,8 +1,10 @@
 package com.example.bluetoothserialport
 
 import android.content.*
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
@@ -10,12 +12,25 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.azhon.appupdate.manager.DownloadManager
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import mehdi.sakout.aboutpage.AboutPage
 import mehdi.sakout.aboutpage.Element
-import world.shanya.serialport.SerialPort
-import world.shanya.serialport.SerialPortBuilder
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import kotlin.concurrent.thread
 
 class AboutActivity : AppCompatActivity() {
+
+    private var manager: DownloadManager? = null
+    private var versionCode:Int = 0
+    private var versionName:String = "1.0.0"
+    private var apkName:String = "null.apk"
+    private var apkSize:String = "0"
+    private var updateDescription:String = "null"
+    private var getDataWebsite:String ="https://gitee.com/tfc123/SG90-open-the-door/raw/master/BluetoothSerialPort/latestVersion.json"
+    private val downloadWebsite:String ="https://gitee.com/tfc123/SG90-open-the-door/raw/master/BluetoothSerialPort/app/release/app-release.apk"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,11 +74,11 @@ class AboutActivity : AppCompatActivity() {
         }
 
         val versionElement = Element()
-        val versionName = packageManager.getPackageInfo(packageName,0).versionName
+        val localVersionName = packageManager.getPackageInfo(packageName,0).versionName
         versionElement.gravity = Gravity.CENTER
-        versionElement.title = "$versionName"
+        versionElement.title = "版本：$localVersionName"
         versionElement.setOnClickListener {
-            Toast.makeText(this,"软件版本号：$versionName",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"软件版本号：$localVersionName",Toast.LENGTH_SHORT).show()
         }
 
         val updateElement = Element()
@@ -71,8 +86,8 @@ class AboutActivity : AppCompatActivity() {
         updateElement.title = "检测更新"
         updateElement.setOnClickListener {
             Toast.makeText(this,"检测更新中……",Toast.LENGTH_SHORT).show()
-            Toast.makeText(this,"暂无更新",Toast.LENGTH_SHORT).show()
 
+            checkUpdate()
         }
 
 //        TODO:添加copyright
@@ -84,7 +99,7 @@ class AboutActivity : AppCompatActivity() {
             .setImage(R.mipmap.ic_launcher_logo)
 //            .addItem(Element().setTitle(packageManager.getPackageInfo(packageName, 0).versionName))
 //            .addItem(adsElement)
-            .addGroup("Connect with us")
+            .addGroup("关注作者")
 //            .addEmail("1429316040@qq.com")
             .addWebsite("https://iqdxa.github.io/SG90-open-the-door/")
             .addGitHub("iqdxa\\SG90-open-the-door")
@@ -97,5 +112,56 @@ class AboutActivity : AppCompatActivity() {
             .addItem(updateElement)
             .create()
         setContentView(aboutPage)
+    }
+
+    private fun checkUpdate(){
+        thread {
+            try {
+                val client = OkHttpClient()
+                val request = Request.Builder()
+                    .url(getDataWebsite)
+                    .build()
+                val response = client.newCall(request).execute()
+                val responseData = response.body()?.string()
+                if (responseData != null) {
+                    val gson = Gson()
+                    val typeOf = object : TypeToken<List<App>>() {}.type
+                    val appList = gson.fromJson<List<App>>(responseData, typeOf)
+                    for (app in appList) {
+                        versionCode = app.versionCode
+                        versionName = app.versionName
+                        apkName = app.apkName
+                        apkSize = app.apkSize
+                        Log.d("MainActivity","$versionCode")
+                        updateDescription= app.apkDescription
+                        manager = DownloadManager.Builder(this).run {
+                            apkUrl(downloadWebsite)
+                            apkName("app-release.apk")
+                            smallIcon(R.mipmap.ic_launcher)
+                            showNewerToast(true)
+                            apkVersionCode(versionCode)
+                            apkVersionName(versionName)
+                            apkSize(apkSize)
+                            apkDescription(updateDescription)
+//                      apkMD5("DC501F04BBAA458C9DC33008EFED5E7F")
+                            enableLog(true)
+//                      httpManager()
+                            jumpInstallPage(true)
+//                      dialogImage(R.drawable.ic_dialog)
+//                      dialogButtonColor(Color.parseColor("#E743DA"))
+//                      dialogProgressBarColor(Color.parseColor("#E743DA"))
+                            dialogButtonTextColor(Color.WHITE)
+                            showNotification(true)
+                            showBgdToast(false)
+                            forcedUpgrade(false)
+                            build()
+                        }
+                        manager?.download()
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
     }
 }

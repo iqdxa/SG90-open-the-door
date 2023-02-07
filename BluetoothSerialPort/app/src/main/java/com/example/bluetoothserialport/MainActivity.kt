@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
     private var toolMenu: Menu ?= null
     private var serialPort:SerialPort ?= null
+
     private var manager: DownloadManager? = null
     private var versionCode:Int = 0
     private var versionName:String = "1.0.0"
@@ -35,6 +37,7 @@ class MainActivity : AppCompatActivity() {
     private var updateDescription:String = "null"
     private var getDataWebsite:String ="https://gitee.com/tfc123/SG90-open-the-door/raw/master/BluetoothSerialPort/latestVersion.json"
     private val downloadWebsite:String ="https://gitee.com/tfc123/SG90-open-the-door/raw/master/BluetoothSerialPort/app/release/app-release.apk"
+
     @SuppressLint("MissingPermission", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,9 +50,13 @@ class MainActivity : AppCompatActivity() {
         val buttonCloseDoor = findViewById<Button>(R.id.buttonCloseDoor)
 
         //检测更新
+
         checkUpdate()
 
+//        startActivity(Intent(this,UpdateActivity::class.java))
+
         //TODO:开门次数统计
+
         serialPort = SerialPortBuilder
             .autoConnect(true)//设置为启动时重连
             .setConnectionStatusCallback { status, bluetoothDevice ->
@@ -109,8 +116,7 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    //应用更新
-    private fun checkUpdate(){
+    private fun checkUpdate() {
         thread {
             try {
                 val client = OkHttpClient()
@@ -128,9 +134,8 @@ class MainActivity : AppCompatActivity() {
                         versionName = app.versionName
                         apkName = app.apkName
                         apkSize = app.apkSize
-                        updateDescription= app.updateDescription
-                        versionCode=3
-//                            if (versionCode > ApkUtil.getVersionCode(application)) {
+                        Log.d("MainActivity","$versionCode")
+                        updateDescription= app.apkDescription
                         manager = DownloadManager.Builder(this).run {
                             apkUrl(downloadWebsite)
                             apkName("app-release.apk")
@@ -161,7 +166,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
     private var isExit: Boolean = false
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
