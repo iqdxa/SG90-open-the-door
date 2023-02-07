@@ -1,15 +1,29 @@
+---
+title: 舵机开门
+description: 手机通过蓝牙控制SG90旋转来控制门的开关
+categories:
+ - 我的项目
+tags: 
+ - 单片机
+ - C51
+ - Kotlin
+---
+
+
+
 # 舵机开门
 
 <p align="center">
 	<img src="https://img.shields.io/badge/language-kotlin-orange.svg"/>
+    <img src="https://img.shields.io/badge/language-c-orange.svg"/>
 	<img src="https://img.shields.io/github/repo-size/iqdxa/SG90-open-the-door">
 	<img src="https://img.shields.io/github/v/release/iqdxa/SG90-open-the-door">
 	<img src="https://img.shields.io/github/downloads/iqdxa/SG90-open-the-door/total">
 <br>
-    <a href="https://iqdxa.github.io/SG90-open-the-door">主页</a>|
+    <a href="https://github.com/iqdxa/SG90-open-the-door">GitHub地址</a>|
+    <a href="https://gitee.com/tfc123/SG90-open-the-door">Gitee地址</a>|
     <a href="https://github.com/iqdxa/SG90-open-the-door/releases">更新日志</a>
 </p>
-
 
 
 ## 想法来源
@@ -44,8 +58,6 @@
 
 橙色----------------------信号线
 
-![](photo\舵机接线颜色示意图.png)
-
 ##### 控制舵机
 
 采用PWM控制的方式来进行舵机的操纵，舵机的控制需要MCU产生一个20ms的脉冲信号，以0.5ms到2.5ms的高电平来控制舵机的角度。对于180°舵机的控制数据如下：
@@ -72,7 +84,7 @@
 
 希望能够通过手机的蓝牙远程控制单片机进行开门。
 
-软件使用GitHub用户Shanyaliux的SerialPortSample开源项目中的kotlindemo应用，并自己进行修改以适应自己使用。[软件下载地址]([Releases · iqdxa/SG90-open-the-door (github.com)](https://github.com/iqdxa/SG90-open-the-door/releases))
+软件使用GitHub用户Shanyaliux的SerialPortSample开源项目中的kotlindemo应用，并自己进行修改以适应自己使用。[软件下载地址]((https://github.com/iqdxa/SG90-open-the-door/releases))
 
 #### 软件使用
 
