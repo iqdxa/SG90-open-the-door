@@ -59,5 +59,8 @@ dependencies {
     implementation 'com.guolindev.permissionx:permissionx:1.7.1'  //Get Permissions
     implementation 'io.github.azhon:appupdate:4.2.6'
     implementation 'cn.zhxu:okhttps:4.0.1'
-    implementation 'com.google.code.gson:gson:2.8.4'
+    implementation 'com.google.code.gson:gson:2.8.9'
+
+    //设置
+    implementation("androidx.preference:preference-ktx:1.2.0")
 }

@@ -15,6 +15,9 @@
         android:theme="@style/Theme.SerialPortSample"
         tools:targetApi="31">
         <activity
+            android:name=".SettingActivity"
+            android:exported="false" />
+        <activity
             android:name=".pages.GithubWebsiteActivity"
             android:exported="false" />
         <activity

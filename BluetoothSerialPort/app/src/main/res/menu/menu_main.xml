@@ -4,17 +4,18 @@
     tools:context="com.example.bluetoothserialport.MainActivity">
 
     <item
-        android:id="@+id/menu_connect"
-        android:title="@string/menu_connect"
-        app:showAsAction="ifRoom" />
+        android:id="@+id/menu_setting"
+        android:orderInCategory="1"
+        android:title="@string/menu_setting"
+        app:showAsAction="never" />
     <item
         android:id="@+id/menu_about"
-        android:orderInCategory="1"
+        android:orderInCategory="2"
         android:title="@string/menu_about"
         app:showAsAction="never" />
     <item
         android:id="@+id/menu_quiet"
-        android:orderInCategory="2"
+        android:orderInCategory="3"
         android:title="@string/menu_quiet"
         app:showAsAction="never" />
 

@@ -21,6 +21,8 @@ class AboutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
 
+        //TODO:连接到更新日志页面
+
         val feedbackGiteeElement = Element()
         feedbackGiteeElement.gravity = Gravity.START
         feedbackGiteeElement.title = "通过Gitee反馈"
@@ -46,7 +48,7 @@ class AboutActivity : AppCompatActivity() {
             val clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val clipData = ClipData.newPlainText("Label", "1429316040@qq.com")
             clipboardManager.setPrimaryClip(clipData)
-            Toast.makeText(this,"已复制邮箱地址到剪贴板",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"邮箱已复制到剪贴板",Toast.LENGTH_SHORT).show()
         }
 
         val authorElement = Element()
@@ -69,7 +71,10 @@ class AboutActivity : AppCompatActivity() {
         updateElement.title = "检测更新"
         updateElement.setOnClickListener {
             Toast.makeText(this,"检测更新中……",Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"暂无更新",Toast.LENGTH_SHORT).show()
         }
+
+//        TODO:添加copyright
 
         val aboutPage: View = AboutPage(this)
             .isRTL(false)

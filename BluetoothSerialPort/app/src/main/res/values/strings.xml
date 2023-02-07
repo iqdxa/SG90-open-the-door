@@ -33,6 +33,7 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="close_door">关门</string>
+    <string name="menu_setting">设置</string>
     <!-- Strings used for fragments for navigation -->
 
 </resources>

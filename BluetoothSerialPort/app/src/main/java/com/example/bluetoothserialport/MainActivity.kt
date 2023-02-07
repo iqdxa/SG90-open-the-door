@@ -96,6 +96,8 @@ class MainActivity : AppCompatActivity() {
     //该方法对菜单的item进行监听
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.menu_setting ->
+                startActivity(Intent(this, SettingActivity::class.java))
             R.id.menu_about ->
                 startActivity(Intent(this, AboutActivity::class.java))
             R.id.menu_quiet -> {
