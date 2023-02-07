@@ -1,7 +1,7 @@
 [{
     "apkName":"open_door.apk",
     "apkSize":"5.43MB",
-    "versionCode":"3",
-    "versionName":"v2.2.1",
-    "apkDescription":"1.增加检测更新功能\\n2.在“关于”页面添加“反馈”\\n3.删除菜单栏图标"
+    "versionCode":"4",
+    "versionName":"v3.1.2",
+    "apkDescription":"1.启动软件时自动重连\n2.增加设置页面\n3.支持英语显示\n4.优化更新\n5.反馈通道增加Gitee\n6.修复邮箱复制问题\n3."
 }]
