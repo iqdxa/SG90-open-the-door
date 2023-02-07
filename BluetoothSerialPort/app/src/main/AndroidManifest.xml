@@ -14,11 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SerialPortSample"
         tools:targetApi="31" >
-        <activity
-            android:name=".UpdateActivity"
-            android:exported="false"
-            android:label="@string/title_activity_update"
-            android:theme="@style/Theme.SerialPortSample.NoActionBar" />
+
         <activity
             android:name=".SettingActivity"
             android:exported="false" />

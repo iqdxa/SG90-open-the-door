@@ -6,11 +6,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.azhon.appupdate.manager.DownloadManager
 import com.google.gson.Gson
@@ -86,21 +83,14 @@ class AboutActivity : AppCompatActivity() {
         updateElement.title = "检测更新"
         updateElement.setOnClickListener {
             Toast.makeText(this,"检测更新中……",Toast.LENGTH_SHORT).show()
-
             checkUpdate()
         }
-
-//        TODO:添加copyright
 
         val aboutPage: View = AboutPage(this)
             .isRTL(false)
             .setDescription("蓝牙开门手机端")
-//            .setCustomFont(String) // or Typeface
             .setImage(R.mipmap.ic_launcher_logo)
-//            .addItem(Element().setTitle(packageManager.getPackageInfo(packageName, 0).versionName))
-//            .addItem(adsElement)
             .addGroup("关注作者")
-//            .addEmail("1429316040@qq.com")
             .addWebsite("https://iqdxa.github.io/SG90-open-the-door/")
             .addGitHub("iqdxa\\SG90-open-the-door")
             .addGroup("反馈：")
@@ -132,31 +122,34 @@ class AboutActivity : AppCompatActivity() {
                         versionName = app.versionName
                         apkName = app.apkName
                         apkSize = app.apkSize
-                        Log.d("MainActivity","$versionCode")
                         updateDescription= app.apkDescription
-                        manager = DownloadManager.Builder(this).run {
-                            apkUrl(downloadWebsite)
-                            apkName("app-release.apk")
-                            smallIcon(R.mipmap.ic_launcher)
-                            showNewerToast(true)
-                            apkVersionCode(versionCode)
-                            apkVersionName(versionName)
-                            apkSize(apkSize)
-                            apkDescription(updateDescription)
-//                      apkMD5("DC501F04BBAA458C9DC33008EFED5E7F")
-                            enableLog(true)
+                        var localVersionCode=packageManager.getPackageInfo(packageName,0).versionCode
+                        if(localVersionCode < versionCode ){
+                            manager = DownloadManager.Builder(this).run {
+                                apkUrl(downloadWebsite)
+                                apkName("app-release.apk")
+                                smallIcon(R.mipmap.ic_launcher)
+                                showNewerToast(true)
+                                apkVersionCode(versionCode)
+                                apkVersionName(versionName)
+                                apkSize(apkSize)
+                                apkDescription(updateDescription)
+                                enableLog(true)
 //                      httpManager()
-                            jumpInstallPage(true)
+                                jumpInstallPage(true)
 //                      dialogImage(R.drawable.ic_dialog)
-//                      dialogButtonColor(Color.parseColor("#E743DA"))
+//                        dialogButtonColor(Color.parseColor("#E743DA"))
 //                      dialogProgressBarColor(Color.parseColor("#E743DA"))
-                            dialogButtonTextColor(Color.WHITE)
-                            showNotification(true)
-                            showBgdToast(false)
-                            forcedUpgrade(false)
-                            build()
+                                dialogButtonTextColor(Color.WHITE)
+                                showNotification(true)
+                                showBgdToast(false)
+                                forcedUpgrade(false)
+                                build()
+                            }
+                            manager?.download()
+                        }else{
+                            Toast.makeText(this,"暂无更新",Toast.LENGTH_SHORT).show()
                         }
-                        manager?.download()
                     }
                 }
             } catch (e: Exception) {

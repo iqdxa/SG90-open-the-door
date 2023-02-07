@@ -50,10 +50,7 @@ class MainActivity : AppCompatActivity() {
         val buttonCloseDoor = findViewById<Button>(R.id.buttonCloseDoor)
 
         //检测更新
-
         checkUpdate()
-
-//        startActivity(Intent(this,UpdateActivity::class.java))
 
         //TODO:开门次数统计
 
@@ -134,7 +131,6 @@ class MainActivity : AppCompatActivity() {
                         versionName = app.versionName
                         apkName = app.apkName
                         apkSize = app.apkSize
-                        Log.d("MainActivity","$versionCode")
                         updateDescription= app.apkDescription
                         manager = DownloadManager.Builder(this).run {
                             apkUrl(downloadWebsite)
@@ -145,7 +141,6 @@ class MainActivity : AppCompatActivity() {
                             apkVersionName(versionName)
                             apkSize(apkSize)
                             apkDescription(updateDescription)
-//                      apkMD5("DC501F04BBAA458C9DC33008EFED5E7F")
                             enableLog(true)
 //                      httpManager()
                             jumpInstallPage(true)
