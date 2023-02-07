@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         //检测更新
         checkUpdate()
 
+        //TODO:开门次数统计
         serialPort = SerialPortBuilder
             .autoConnect(true)//设置为启动时重连
             .setConnectionStatusCallback { status, bluetoothDevice ->

@@ -1,28 +1,12 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory app:title="显示">
-
-        <ListPreference
-            app:defaultValue="auto"
-            app:entries="@array/reply_entries"
-            app:entryValues="@array/reply_values"
-            app:key="language"
-            app:title="语言设置"
-            app:useSimpleSummaryProvider="true" />
-
-    </PreferenceCategory>
-
     <PreferenceCategory app:title="其他">
 
-        <SwitchPreferenceCompat
-            app:key="sync"
-            app:title="@string/sync_title" />
+        <Preference
+            app:key="null"
+            app:title="暂无设置"/>
 
     </PreferenceCategory>
-
-    <Preference
-        app:key="about"
-        app:title="关于"/>
 
 </PreferenceScreen>

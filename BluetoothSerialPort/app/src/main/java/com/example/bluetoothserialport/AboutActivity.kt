@@ -21,7 +21,7 @@ class AboutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
 
-        //TODO:连接到更新日志页面
+        //TODO:添加跳转到更新日志页面按钮
 
         val feedbackGiteeElement = Element()
         feedbackGiteeElement.gravity = Gravity.START
@@ -72,6 +72,7 @@ class AboutActivity : AppCompatActivity() {
         updateElement.setOnClickListener {
             Toast.makeText(this,"检测更新中……",Toast.LENGTH_SHORT).show()
             Toast.makeText(this,"暂无更新",Toast.LENGTH_SHORT).show()
+
         }
 
 //        TODO:添加copyright
